@@ -25,7 +25,7 @@ classifiers = [
 ]
 
 [dependency-groups]
-dev = ["pytest", "ruff", "bumpversion"]
+dev = ["pytest", "ruff", "bump-my-version"]
 
 [tool.ruff]
 target-version = "py310"
@@ -47,4 +47,4 @@ default = { solve-group = "default", features = ["dev"] }
 dev = { features = ["dev"], solve-group = "default" }
 
 [tool.pixi.tasks]
-publish = { cmd = "git add . && (git diff --staged --quiet || git commit -m \"pre-release: staging changes\") && bumpversion {{ part }} --message \"{{ message }}\" && git push origin HEAD --tags", args = [{ arg = "part", default = "patch" }, { arg = "message", default = "incrementing version to {new_version}" }] }
+publish = { cmd = "git add . && (git diff --staged --quiet || git commit -m \"pre-release: staging changes\") && bump-my-version bump {{ part }} --message \"{{ message }}\" && git push origin HEAD --tags", args = [{ arg = "part", default = "patch" }, { arg = "message", default = "incrementing version to {new_version}" }] }
