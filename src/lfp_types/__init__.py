@@ -1,7 +1,8 @@
-from collections.abc import Iterable, Sequence
-from types import GeneratorType
-from typing import Any, Iterable as TypingIterable, Iterator, TypeVar
 import string
+from collections.abc import Iterable, Iterator, Sequence
+from collections.abc import Iterable as TypingIterable
+from types import GeneratorType
+from typing import Any, TypeVar
 
 """Runtime helpers and normalization utilities for iterable-like values."""
 
@@ -29,8 +30,6 @@ def is_sequence(value: Any) -> bool:
     return isinstance(value, Sequence) and not isinstance(value, _STRING_LIKE)
 
 
-
-
 def to_iterable(value: Any, *, flatten: bool = False) -> TypingIterable[Any]:
     """
     Normalize a value to an iterable.
@@ -50,7 +49,6 @@ def to_iterable(value: Any, *, flatten: bool = False) -> TypingIterable[Any]:
             for v in cur_value:
                 yield from _to_iterable(v)
 
-
     return _to_iterable(value)
 
 
@@ -62,9 +60,8 @@ def to_container(value: Any, *, flatten: bool = False) -> TypingIterable[Any]:
     Non-container iterables are materialized.
     Scalars become a single-element list.
     """
-    if is_container(value):
-        if not flatten or not any(is_iterable(v) for v in value):
-            return value
+    if is_container(value) and (not flatten or not any(is_iterable(v) for v in value)):
+        return value
     return list(to_iterable(value, flatten=flatten))
 
 
@@ -90,12 +87,11 @@ def to_bool(value: Any, *, default: bool | None = False) -> bool:
         elif value == 0:
             return False
 
-    elif value is not None:
-        if v := str(value).strip().lower():
-            if v in _TRUE_VALUES:
-                return True
-            elif v in _FALSE_VALUES:
-                return False
+    elif value is not None and (v := str(value).strip().lower()):
+        if v in _TRUE_VALUES:
+            return True
+        elif v in _FALSE_VALUES:
+            return False
 
     if default is None:
         raise ValueError(f"Cannot convert {value!r} to bool")
