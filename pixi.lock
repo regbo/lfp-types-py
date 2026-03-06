@@ -919,8 +919,8 @@ packages:
   timestamp: 1770267209884
 - pypi: ./
   name: lfp-types
-  version: 0.0.3
-  sha256: d44a3ac51942ad3d92d7d4fbb65f07fda6cebe4dad8fc067e0e91f0e62ae3b28
+  version: 0.0.4
+  sha256: b53ed91541ce8fd4fab6265bd6a98988b8d8e6737085a1c6c1088a711c5a54a3
   requires_python: '>=3.9'
 - conda: https://conda.anaconda.org/conda-forge/linux-64/libexpat-2.7.4-hecca717_0.conda
   sha256: d78f1d3bea8c031d2f032b760f36676d87929b18146351c4464c66b0869df3f5
