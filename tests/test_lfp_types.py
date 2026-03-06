@@ -45,7 +45,7 @@ def test_container_runtime_type() -> None:
 def test_is_container_distinguishes_generators() -> None:
     assert is_container([1, 2]) is True
     assert is_container((1, 2)) is True
-    assert is_container((x for x in range(2))) is False
+    assert is_container(x for x in range(2)) is False
     assert is_container("abc") is False
 
 
