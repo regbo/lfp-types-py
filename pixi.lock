@@ -560,7 +560,7 @@ packages:
 - pypi: ./
   name: lfp-types
   version: 0.0.1
-  sha256: b6419c52b37fcea4c8e14d277347cdac584910b57f3294ba1e15fd5351a41add
+  sha256: 882e13cb7468490eb9bcc806508472a32ba16d4cd8ab514d496bdecf8360fa4d
   requires_python: '>=3.9'
 - conda: https://conda.anaconda.org/conda-forge/linux-64/libexpat-2.7.4-hecca717_0.conda
   sha256: d78f1d3bea8c031d2f032b760f36676d87929b18146351c4464c66b0869df3f5
