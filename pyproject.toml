@@ -45,6 +45,7 @@ filename = "pyproject.toml"
 search = 'version = "{current_version}"'
 replace = 'version = "{new_version}"'
 
+
 [tool.pixi.workspace]
 channels = ["conda-forge"]
 platforms = ["osx-arm64", "osx-64", "linux-64", "linux-aarch64", "win-64", "win-arm64"]
@@ -58,4 +59,9 @@ dev = { features = ["dev"], solve-group = "default" }
 
 [tool.pixi.tasks]
 ruff-fix = "ruff check . --fix --unsafe-fixes && ruff format ."
-publish = { cmd = "git add . && (git diff --staged --quiet || git commit -m \"pre-release: staging changes\") && bump-my-version bump {{ part }} --message \"{{ message }}\" && git push origin HEAD --tags", args = [{ arg = "part", default = "patch" }, { arg = "message", default = "incrementing version to {new_version}" }], depends-on = ["ruff-fix"] }
+publish = { cmd = "git add . && (git diff --staged --quiet || git commit -m \"pre-release: staging changes\") && bump-my-version bump {{ part }} --message \"{{ message }}\" && git push origin HEAD --tags", args = [
+    { arg = "part", default = "patch" },
+    { arg = "message", default = "incrementing version to {new_version}" },
+], depends-on = [
+    "ruff-fix",
+] }
