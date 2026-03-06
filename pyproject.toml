@@ -7,7 +7,7 @@ name = "lfp-types"
 version = "0.0.1"
 description = "Lightweight runtime typing helpers for iterable and container normalization."
 readme = "README.md"
-requires-python = ">=3.10"
+requires-python = ">=3.9"
 dependencies = []
 license = { file = "LICENSE" }
 keywords = ["typing", "helpers", "iterable", "container", "normalization"]
