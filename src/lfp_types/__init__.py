@@ -16,10 +16,12 @@ Public surface:
 - ``A`` through ``Z``: pre-declared ``TypeVar`` shortcuts.
 """
 
+from __future__ import annotations
+
 import string
 from collections.abc import Iterable, Iterator, Sequence
 from types import GeneratorType
-from typing import Any, Generic, TypeVar
+from typing import Any, Generic, TypeVar, overload
 
 T = TypeVar("T")
 _STRING_LIKE = (str, bytes, bytearray, memoryview)
@@ -217,7 +219,15 @@ _TRUE_VALUES = {"true", "t", "yes", "y", "1", "on"}
 _FALSE_VALUES = {"false", "f", "no", "n", "0", "off"}
 
 
-def to_bool(value: Any, *, default: bool | None = False) -> bool:
+@overload
+def to_bool(value: Any) -> bool: ...
+
+
+@overload
+def to_bool(value: Any, *, default: bool) -> bool: ...
+
+
+def to_bool(value: Any, *, default: bool | None = False) -> bool | None:
     """Convert common truthy and falsy representations to ``bool``.
 
     Recognized values:
